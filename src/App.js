@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { createContext } from "react";
 
-function App() {
+import Data from "./Components/Data";
+import Heading from "./Components/Heading";
+import "./Components/Card.css";
+import FullCard from "./Components/FullCard";
+
+const Iprice = createContext();
+const Icolour = createContext();
+const Iname = createContext();
+const Iitem = createContext();
+
+function App(props) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Iprice.Provider value={Data[0].price}>
+        <Icolour.Provider value={Data[0].colour}>
+          <Iname.Provider value={Data[0].name}>
+            <Iitem.Provider value={Data[0].item}>
+              <div className="container">
+                <Heading />
+                <FullCard />
+                <FullCard />
+                <FullCard />
+
+              <p style={{ textAlign: "right", color: "#2ECC71" }} >
+                
+                <button className="extra-butt-color ">
+                  <i className="fas fa-plus-circle fa-4x "></i>
+                </button>
+              </p>
+              </div>
+            </Iitem.Provider>
+          </Iname.Provider>
+        </Icolour.Provider>
+      </Iprice.Provider>
     </div>
   );
 }
 
 export default App;
+export { Iprice, Icolour, Iitem, Iname };
